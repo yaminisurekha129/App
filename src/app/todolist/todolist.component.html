@@ -1,0 +1,25 @@
+<h3 class="text-secondary mt-5 text-center">Task List</h3>
+
+<!-- Filter Dropdown -->
+<div class="row mb-3">
+  <div class="col-6 mx-auto">
+    <select class="form-select" [(ngModel)]="filter" (change)="setFilter(filter)">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="pending">Pending</option>
+    </select>
+  </div>
+</div>
+
+<!-- Task List -->
+<ul class="list-group col-6 mx-auto">
+  <li class="list-group-item" *ngFor="let todo of todos; let i = index">
+    <input
+      class="form-check-input me-2"
+      type="checkbox"
+      [checked]="todo.completed"
+      (change)="toggleComplete(i)">
+    <span [class.text-decoration-line-through]="todo.completed">{{ todo.task }}</span>
+    <button class="btn btn-danger right" (click)="removeTodo(i)">&#215;</button>
+  </li>
+</ul>
